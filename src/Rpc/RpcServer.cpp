@@ -609,6 +609,7 @@ bool RpcServer::f_on_block_json(const F_COMMAND_RPC_GET_BLOCK_DETAILS::request& 
   res.block.sizeMedian = blkDetails.sizeMedian;
   res.block.blockSize = blkDetails.blockSize;
   res.block.orphan_status = blkDetails.isAlternative;
+res.block.minedBy = blk.minedBy;
 
   uint64_t maxReward = 0;
   uint64_t currentReward = 0;
@@ -851,6 +852,7 @@ bool RpcServer::on_getblocktemplate(const COMMAND_RPC_GETBLOCKTEMPLATE::request&
     throw JsonRpc::JsonRpcError{ CORE_RPC_ERROR_CODE_INTERNAL_ERROR, "Internal error: failed to create block template" };
   }
 
+blockTemplate.minedBy = req.wallet_address;
   BinaryArray block_blob = toBinaryArray(blockTemplate);
   PublicKey tx_pub_key = CryptoNote::getTransactionPublicKeyFromExtra(blockTemplate.baseTransaction.extra);
   if (tx_pub_key == NULL_PUBLIC_KEY) {

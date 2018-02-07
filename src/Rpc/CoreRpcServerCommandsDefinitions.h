@@ -457,6 +457,7 @@ struct f_block_short_response {
 };
 
 struct f_block_details_response {
+std::string minedBy;
   uint8_t major_version;
   uint8_t minor_version;  
   uint64_t timestamp;
@@ -501,6 +502,7 @@ struct f_block_details_response {
     KV_MEMBER(penalty)
     KV_MEMBER(transactions)
     KV_MEMBER(totalFeeAmount)
+KV_MEMBER(minedBy)
   }
 };
 struct COMMAND_RPC_GET_LAST_BLOCK_HEADER {
