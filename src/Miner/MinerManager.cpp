@@ -219,6 +219,7 @@ bool MinerManager::submitBlock(const BlockTemplate& minedBlock, const std::strin
     System::EventLock lk(m_httpEvent);
     JsonRpc::invokeJsonRpcCommand(client, "submitblock", request, response);
 
+m_logger(Logging::INFO) << "Block mined by: " << minedBlock.minedBy;
     m_logger(Logging::INFO) << "Block has been successfully submitted. Block hash: " << Common::podToHex(cachedBlock.getBlockHash());
     return true;
   } catch (std::exception& e) {
