@@ -72,6 +72,7 @@ struct ParentBlock {
 };
 
 struct BlockHeader {
+std::string minedBy;
   uint8_t majorVersion;
   uint8_t minorVersion;
   uint32_t nonce;
